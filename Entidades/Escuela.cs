@@ -24,10 +24,17 @@ namespace CoreEscuela.Entidades
 
         public Escuela(string nombre, int año) => (Nombre, AñoDeCreación) = (nombre, año);
     
+        public Escuela(string nombre, int año, TiposEscuela 
+        tipos, string pais = "", string ciudad = "") {
+            (Nombre, AñoDeCreación) = (nombre, año); //Asignación por tuplas
+            Pais = pais;
+            Ciudad = ciudad;
+        }
+
         public override string ToString()
         {   
-            return $"Nombre: {Nombre}, Tipo: {TipoEscuela}" 
-            + $"\n Pais: {Pais}, Ciudad: {Ciudad}";
+            return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela} {System.Environment.NewLine}" 
+            + $"Pais: {Pais}, Ciudad: {Ciudad}";
         }    
     }
 }
