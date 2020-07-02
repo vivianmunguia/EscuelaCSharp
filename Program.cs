@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreEscuela.Entidades;
+using static System.Console;
 
 namespace Etapa1
 {
@@ -10,42 +11,41 @@ namespace Etapa1
             var escuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
             ciudad: "Bogotá", pais: "Colombia");
 
-            var arregloCursos = new Curso[3];
-
-            arregloCursos[0] = new Curso()
-            {
-                Nombre = "101"
+            escuela.Cursos = new Curso[] {
+                new Curso(){ Nombre = "101"},
+                new Curso(){ Nombre = "201"},
+                new Curso{ Nombre = "301"}
             };
 
-            var curso2 = new Curso()
-            {
-                Nombre = "201"
-            };
-
-            arregloCursos[1] = curso2;
-
-            arregloCursos[2] = new Curso
-            {
-                Nombre = "301"
-            };
-
-            Console.WriteLine(escuela);
-            Console.WriteLine("===============");
-            ImprimirCursosWhile(arregloCursos);
-            Console.WriteLine("===============");
-            ImprimirCursosDoWhile(arregloCursos);
-            Console.WriteLine("===============");
-            ImprimirCursosFor(arregloCursos);
-            Console.WriteLine("===============");
-            ImprimirCursosForEach(arregloCursos);
+            ImprimirCursosEscuela(escuela);
 
         }
+
+        private static void ImprimirCursosEscuela(Escuela escuela)
+        {
+            WriteLine("====================");
+            WriteLine("Cursos de la escuela");
+            WriteLine("====================");
+
+            //if (escuela != null && escuela.Cursos != null) 
+            //Primero se verifica la primera expresión, si es falsa ya no se evalúa la segunda
+            //El operador ? significa que no se van a verificar los cursos si la escuela no es diferente de null
+            if (escuela?.Cursos != null) 
+            {
+                foreach (var curso in escuela.Cursos)
+                {
+                    WriteLine($"Nombre {curso.Nombre }, Id {curso.UniqueId}");
+                }
+            }
+
+        }
+
         private static void ImprimirCursosWhile(Curso[] arregloCursos)
         {
             int contador = 0;
             while (contador < arregloCursos.Length)
             {
-                Console.WriteLine($"Nombre {arregloCursos[contador].Nombre}, "
+                WriteLine($"Nombre {arregloCursos[contador].Nombre}, "
                 + $"Id {arregloCursos[contador].UniqueId}");
                 contador++;
             }
@@ -56,7 +56,7 @@ namespace Etapa1
             int contador = 0;
             do
             {
-                Console.WriteLine($"Nombre {arregloCursos[contador].Nombre}, "
+                WriteLine($"Nombre {arregloCursos[contador].Nombre}, "
                 + $"Id {arregloCursos[contador].UniqueId}");
                 contador++;
             } while (contador < arregloCursos.Length);
@@ -66,8 +66,8 @@ namespace Etapa1
         {
             for (int i = 0; i < arregloCursos.Length; i++)
             {
-            Console.WriteLine($"Nombre {arregloCursos[i].Nombre}, "
-            + $"Id {arregloCursos[i].UniqueId}");
+                WriteLine($"Nombre {arregloCursos[i].Nombre}, "
+                + $"Id {arregloCursos[i].UniqueId}");
             }
         }
 
@@ -75,7 +75,7 @@ namespace Etapa1
         {   //para cada curso en arregloCursos
             foreach (var curso in arregloCursos)
             {
-                Console.WriteLine($"Nombre {curso.Nombre}, Id {curso.UniqueId}");
+                WriteLine($"Nombre {curso.Nombre}, Id {curso.UniqueId}");
             }
         }
     }
