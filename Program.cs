@@ -19,6 +19,38 @@ namespace Etapa1
 
             ImprimirCursosEscuela(escuela);
 
+            bool rta = 10 == 10;
+            int cantidad = 10;
+            if(rta == false)
+            {
+                WriteLine("Se cumplió la condición #1");
+            }
+            else if(cantidad > 15)
+            {
+                WriteLine("Se cumplió la condición #2");
+            }
+            else
+            {
+                WriteLine("No se cumplió ninguna condición");
+            }
+
+            if(cantidad > 5 && rta == false)
+            {
+                WriteLine("Se cumplió la condición #3");
+            }
+
+            if(cantidad > 5 && rta)
+            {
+                WriteLine("Se cumplió la condición #4");
+            }
+
+            cantidad = 10;
+
+            if((cantidad > 15 || !rta) && (cantidad % 5 == 0))
+            {
+                WriteLine("Se cumplió la condición #5");
+            }
+
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
