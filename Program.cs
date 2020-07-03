@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoreEscuela.Entidades;
 using static System.Console;
 
@@ -11,45 +12,25 @@ namespace Etapa1
             var escuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
             ciudad: "Bogotá", pais: "Colombia");
 
-            escuela.Cursos = new Curso[] {
-                new Curso(){ Nombre = "101"},
-                new Curso(){ Nombre = "201"},
-                new Curso{ Nombre = "301"}
+            escuela.Cursos = new List<Curso>(){
+                new Curso(){ Nombre = "101", Jornada = TiposJornada.Mañana },
+                new Curso(){ Nombre = "201", Jornada = TiposJornada.Mañana },
+                new Curso(){ Nombre = "301", Jornada = TiposJornada.Mañana }
             };
 
+            escuela.Cursos.Add( new Curso{ Nombre="102", Jornada = TiposJornada.Tarde});
+            escuela.Cursos.Add( new Curso{ Nombre="202", Jornada = TiposJornada.Tarde});
+
+            var otraColeccion = new List<Curso>(){
+                new Curso(){ Nombre = "401", Jornada = TiposJornada.Mañana },
+                new Curso(){ Nombre = "501", Jornada = TiposJornada.Mañana },
+                new Curso(){ Nombre = "502", Jornada = TiposJornada.Tarde }
+            };
+
+            otraColeccion.Clear(); //Borra todos los elementos de una colección
+            escuela.Cursos.AddRange(otraColeccion); //Se adiciona la segunda colección a la primera
+
             ImprimirCursosEscuela(escuela);
-
-            bool rta = 10 == 10;
-            int cantidad = 10;
-            if(rta == false)
-            {
-                WriteLine("Se cumplió la condición #1");
-            }
-            else if(cantidad > 15)
-            {
-                WriteLine("Se cumplió la condición #2");
-            }
-            else
-            {
-                WriteLine("No se cumplió ninguna condición");
-            }
-
-            if(cantidad > 5 && rta == false)
-            {
-                WriteLine("Se cumplió la condición #3");
-            }
-
-            if(cantidad > 5 && rta)
-            {
-                WriteLine("Se cumplió la condición #4");
-            }
-
-            cantidad = 10;
-
-            if((cantidad > 15 || !rta) && (cantidad % 5 == 0))
-            {
-                WriteLine("Se cumplió la condición #5");
-            }
 
         }
 
