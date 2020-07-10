@@ -18,21 +18,34 @@ namespace Etapa1
                 new Curso(){ Nombre = "301", Jornada = TiposJornada.Mañana }
             };
 
-            escuela.Cursos.Add( new Curso{ Nombre="102", Jornada = TiposJornada.Tarde});
-            escuela.Cursos.Add( new Curso{ Nombre="202", Jornada = TiposJornada.Tarde});
+            escuela.Cursos.Add(new Curso { Nombre = "102", Jornada = TiposJornada.Tarde });
+            escuela.Cursos.Add(new Curso { Nombre = "202", Jornada = TiposJornada.Tarde });
 
             var otraColeccion = new List<Curso>(){
                 new Curso(){ Nombre = "401", Jornada = TiposJornada.Mañana },
                 new Curso(){ Nombre = "501", Jornada = TiposJornada.Mañana },
-                new Curso(){ Nombre = "502", Jornada = TiposJornada.Tarde }
+                new Curso(){ Nombre = "501", Jornada = TiposJornada.Tarde }
             };
 
-            otraColeccion.Clear(); //Borra todos los elementos de una colección
             escuela.Cursos.AddRange(otraColeccion); //Se adiciona la segunda colección a la primera
 
+            escuela.Cursos.RemoveAll(delegate (Curso cur)
+            { //Busca el curso que tenga de nombre 301 y lo remueve
+                return cur.Nombre == "301";
+            });
+            //Recibe un objeto cur, busca uno cuyo nombre sea 301 y lo borra
+            escuela.Cursos.RemoveAll((cur) => cur.Nombre == "501" && cur.Jornada == TiposJornada.Mañana);
+
+
+            WriteLine("====================");
             ImprimirCursosEscuela(escuela);
 
         }
+
+        /*private static bool Predicado(Curso curobj)
+        {
+            return curobj.Nombre == "301";
+        }*/
 
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
@@ -43,7 +56,7 @@ namespace Etapa1
             //if (escuela != null && escuela.Cursos != null) 
             //Primero se verifica la primera expresión, si es falsa ya no se evalúa la segunda
             //El operador ? significa que no se van a verificar los cursos si la escuela no es diferente de null
-            if (escuela?.Cursos != null) 
+            if (escuela?.Cursos != null)
             {
                 foreach (var curso in escuela.Cursos)
                 {
