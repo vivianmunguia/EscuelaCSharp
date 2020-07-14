@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 using static System.Console;
 
 namespace CoreEscuela
@@ -11,17 +12,15 @@ namespace CoreEscuela
         {
             var engine = new EscuelaEngine();
             engine.Inicializar();
-
-            WriteLine("====================");
+            Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
+            Printer.Beep(10000, cantidad:10);
             ImprimirCursosEscuela(engine.Escuela);
 
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
-            WriteLine("====================");
-            WriteLine("Cursos de la escuela");
-            WriteLine("====================");
+            Printer.WriteTitle("Cursos de la escuela");
 
             //if (escuela != null && escuela.Cursos != null) 
             //Primero se verifica la primera expresión, si es falsa ya no se evalúa la segunda
